@@ -1,0 +1,9 @@
+1. How Many Phases? (O(log V))
+Boruvka’s algorithm runs in a series of phases. In every phase, each connected component picks its minimum weighted outgoing edge and merges with another component. Because this merging usually cuts the number of components roughly in half each time, the algorithm finishes in about logarithmic many phases. In practice, it often finishes even quicker, especially on graphs with good connectivity.
+
+2. Edge Processing Compared to Kruskal
+Boruvka scans all edges once per phase. Since there are several phases, the same edges may be examined multiple times.
+Kruskal, on the other hand, sorts the edges once at the beginning and then walks through them in order, usually touching each edge only once afterward. So even though Boruvka avoids sorting, it ends up rechecking edges more often, while Kruskal pays the sorting cost up front and does fewer comparisons overall.
+
+3. Parallelism Advantages
+One of Boruvka’s strengths is how easily it can be parallelized. Each component can independently search for its cheapest outgoing edge, and these searches can run at the same time. Even merging components with Union–Find lends itself to parallel techniques.
